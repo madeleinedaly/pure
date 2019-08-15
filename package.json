@@ -1,9 +1,9 @@
 {
-	"name": "pure-prompt",
-	"version": "1.10.3",
+	"name": "pure-prompt-nvm",
+	"version": "1.0.0",
 	"description": "Pretty, minimal and fast ZSH prompt",
 	"license": "MIT",
-	"repository": "sindresorhus/pure",
+	"repository": "madeleinedaly/pure-nvm",
 	"author": {
 		"name": "Sindre Sorhus",
 		"email": "sindresorhus@gmail.com",
@@ -11,8 +11,8 @@
 	},
 	"maintainers": [
 		{
-			"name": "Mathias Fredriksson",
-			"url": "https://github.com/mafredri"
+			"name": "Madeleine Daly",
+			"url": "https://github.com/madeleinedaly"
 		}
 	],
 	"scripts": {
