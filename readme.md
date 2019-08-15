@@ -112,7 +112,7 @@ Colors can be changed by using [`zstyle`](http://zsh.sourceforge.net/Doc/Release
 - `prompt:success` (magenta) - The `PURE_PROMPT_SYMBOL` when the previous command has *succeded*.
 - `user` (242) - The username when on remote machine.
 - `user:root` (default) - The username when the user is root.
-- `virtualenv` (242) - The name of the Python `virtualenv` when in use.
+- `nvm_version` (242) - The current active `nvm` version when not set to `system`.
 
 The following diagram shows where each color is applied on the prompt:
 
@@ -127,7 +127,7 @@ venv ❯               |                   |
 |    |               |                   execution_time
 |    |               user
 |    prompt
-virtualenv
+nvm_version
 ```
 
 ### RGB colors
