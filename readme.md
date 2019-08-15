@@ -32,7 +32,7 @@ Can be installed with `npm` or manually. Requires Git 2.0.0+ and ZSH 5.2+. Older
 ### npm
 
 ```console
-$ npm install --global pure-prompt
+$ npm install --global pure-prompt-nvm
 ```
 
 That's it. Skip to [Getting started](#getting-started).
@@ -203,7 +203,7 @@ Update your `.zshrc` file with the following two lines (order matters). Do not u
 
 ```sh
 antigen bundle mafredri/zsh-async
-antigen bundle sindresorhus/pure
+antigen bundle madeleinedaly/pure-nvm
 ```
 
 ### [antibody](https://github.com/getantibody/antibody)
@@ -212,7 +212,7 @@ Update your `.zshrc` file with the following two lines (order matters):
 
 ```sh
 antibody bundle mafredri/zsh-async
-antibody bundle sindresorhus/pure
+antibody bundle madeleinedaly/pure-nvm
 ```
 
 ### [zplug](https://github.com/zplug/zplug)
@@ -221,7 +221,7 @@ Update your `.zshrc` file with the following two lines:
 
 ```sh
 zplug mafredri/zsh-async, from:github
-zplug sindresorhus/pure, use:pure.zsh, from:github, as:theme
+zplug madeleinedaly/pure-nvm, use:pure.zsh, from:github, as:theme
 ```
 
 ### [zplugin](https://github.com/zdharma/zplugin)
@@ -230,7 +230,7 @@ Update your `.zshrc` file with the following two lines (order matters):
 
 ```sh
 zplugin ice pick"async.zsh" src"pure.zsh"
-zplugin light sindresorhus/pure
+zplugin light madeleinedaly/pure-nvm
 ```
 
 
