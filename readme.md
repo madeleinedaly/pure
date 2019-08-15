@@ -187,9 +187,8 @@ To have commands colorized as seen in the screenshot, install [zsh-syntax-highli
 
 ### [prezto](https://github.com/sorin-ionescu/prezto)
 
-Pure is bundled with Prezto. No need to install it.
-
-Add `prompt pure` to your `~/.zpreztorc`.
+Symlink (or copy) `pure.zsh` to `~/.prezto/modules/prompt/functions/prompt_pure_setup` alongside Prezto's other
+prompts. Then `set zstyle ':prezto:module:prompt' theme 'pure'` in `~/.zpreztorc`.
 
 ### [zim](https://github.com/Eriner/zim)
 
