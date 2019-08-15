@@ -97,10 +97,10 @@ prompt_pure_preexec() {
 	# Shows the current directory and executed command in the title while a process is active.
 	prompt_pure_set_title 'ignore-escape' "$PWD:t: $2"
 
-	# Disallow Python virtualenv from updating the prompt. Set it to 12 if
+	# Disallow nvm from updating the prompt. Set it to 12 if
 	# untouched by the user to indicate that Pure modified it. Here we use
 	# the magic number 12, same as in `psvar`.
-	export VIRTUAL_ENV_DISABLE_PROMPT=${VIRTUAL_ENV_DISABLE_PROMPT:-12}
+	export NVM_DISABLE_PROMPT=${NVM_DISABLE_PROMPT:-12}
 }
 
 # Change the colors if their value are different from the current ones.
@@ -194,18 +194,20 @@ prompt_pure_precmd() {
 	# Perform async Git dirty check and fetch.
 	prompt_pure_async_tasks
 
-	# Check if we should display the virtual env. We use a sufficiently high
+	# Check if we should display the nvm version. We use a sufficiently high
 	# index of psvar (12) here to avoid collisions with user defined entries.
 	psvar[12]=
-	# Check if a Conda environment is active and display its name.
-	if [[ -n $CONDA_DEFAULT_ENV ]]; then
-		psvar[12]="${CONDA_DEFAULT_ENV//[$'\t\r\n']}"
+	nvm_version=
+	# Check if an nvm version is set and display it.
+	if [[ -n $NVM_BIN ]]; then
+		nvm_version=$(nvm version)
+		psvar[12]="${nvm_version//[$'\t\r\n']}"
 	fi
-	# When VIRTUAL_ENV_DISABLE_PROMPT is empty, it was unset by the user and
+	# When NVM_DISABLE_PROMPT is empty, it was unset by the user and
 	# Pure should take back control.
-	if [[ -n $VIRTUAL_ENV ]] && [[ -z $VIRTUAL_ENV_DISABLE_PROMPT || $VIRTUAL_ENV_DISABLE_PROMPT = 12 ]]; then
-		psvar[12]="${VIRTUAL_ENV:t}"
-		export VIRTUAL_ENV_DISABLE_PROMPT=12
+	if [[ -n $NVM_BIN ]] && [[ -z $NVM_DISABLE_PROMPT || $NVM_DISABLE_PROMPT = 12 ]]; then
+		psvar[12]="${nvm_version:t}"
+		export NVM_DISABLE_PROMPT=12
 	fi
 
 	# Make sure VIM prompt is reset.
@@ -612,7 +614,7 @@ prompt_pure_system_report() {
 	for k v in "${(@kv)prompt_pure_state}"; do
 		print - "\t- $k: \`${(q)v}\`"
 	done
-	print - "- Virtualenv: \`$(typeset -p VIRTUAL_ENV_DISABLE_PROMPT)\`"
+	print - "- nvm version: \`$(typeset -p NVM_DISABLE_PROMPT)\`"
 	print - "- Prompt: \`$(typeset -p PROMPT)\`"
 
 	local ohmyzsh=0
@@ -678,7 +680,7 @@ prompt_pure_setup() {
 		prompt:success       magenta
 		user                 242
 		user:root            default
-		virtualenv           242
+		nvm_version          242
 	)
 	prompt_pure_colors=("${(@kv)prompt_pure_colors_default}")
 
@@ -695,8 +697,8 @@ prompt_pure_setup() {
 		add-zle-hook-widget zle-keymap-select prompt_pure_update_vim_prompt_widget
 	fi
 
-	# If a virtualenv is activated, display it in grey.
-	PROMPT='%(12V.%F{$prompt_pure_colors[virtualenv]}%12v%f .)'
+	# If nvm is activated, display it in grey.
+	PROMPT='%(12V.%F{$prompt_pure_colors[nvm_version]}%12v%f .)'
 
 	# Prompt turns red if the previous command didn't exit with 0.
 	PROMPT+='%(?.%F{$prompt_pure_colors[prompt:success]}.%F{$prompt_pure_colors[prompt:error]})${prompt_pure_state[prompt]}%f '
