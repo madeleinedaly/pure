@@ -4,8 +4,6 @@
 
 This is a fork of [sindresorhus/pure](https://github.com/sindresorhus/pure) that supports nvm instead of virtualenv.
 
-![Screenshot](screenshot.png)
-
 
 ## Overview
 
