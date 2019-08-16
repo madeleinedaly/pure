@@ -96,11 +96,6 @@ prompt_pure_preexec() {
 
 	# Shows the current directory and executed command in the title while a process is active.
 	prompt_pure_set_title 'ignore-escape' "$PWD:t: $2"
-
-	# Disallow nvm from updating the prompt. Set it to 12 if
-	# untouched by the user to indicate that Pure modified it. Here we use
-	# the magic number 12, same as in `psvar`.
-	export NVM_DISABLE_PROMPT=${NVM_DISABLE_PROMPT:-12}
 }
 
 # Change the colors if their value are different from the current ones.
@@ -202,12 +197,6 @@ prompt_pure_precmd() {
 	if [[ -n $NVM_BIN ]]; then
 		nvm_version=$(nvm version)
 		psvar[12]="${nvm_version//[$'\t\r\n']}"
-	fi
-	# When NVM_DISABLE_PROMPT is empty, it was unset by the user and
-	# Pure should take back control.
-	if [[ -n $NVM_BIN ]] && [[ -z $NVM_DISABLE_PROMPT || $NVM_DISABLE_PROMPT = 12 ]]; then
-		psvar[12]="${nvm_version:t}"
-		export NVM_DISABLE_PROMPT=12
 	fi
 
 	# Make sure VIM prompt is reset.
