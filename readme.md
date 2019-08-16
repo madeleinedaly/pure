@@ -1,4 +1,4 @@
-# Pure
+# pure-nvm
 
 > Pretty, minimal and fast ZSH prompt
 
@@ -9,12 +9,6 @@ This is a fork of [sindresorhus/pure](https://github.com/sindresorhus/pure) that
 
 ## Overview
 
-Most prompts are cluttered, ugly and slow. I wanted something visually pleasing that stayed out of my way.
-
-### Why?
-
-- Comes with the perfect prompt character.
-  Author went through the whole Unicode range to find it.
 - Shows Node version when `nvm` is active
 - Shows `git` branch and whether it's dirty (with a `*`).
 - Indicates when you have unpushed/unpulled `git` commits with up/down arrows. *(Check is done asynchronously!)*
