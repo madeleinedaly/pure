@@ -15,6 +15,7 @@ Most prompts are cluttered, ugly and slow. I wanted something visually pleasing 
 
 - Comes with the perfect prompt character.
   Author went through the whole Unicode range to find it.
+- Shows Node version when `nvm` is active
 - Shows `git` branch and whether it's dirty (with a `*`).
 - Indicates when you have unpushed/unpulled `git` commits with up/down arrows. *(Check is done asynchronously!)*
 - Prompt character turns red if the last command didn't exit with `0`.
@@ -114,7 +115,7 @@ Colors can be changed by using [`zstyle`](http://zsh.sourceforge.net/Doc/Release
 - `prompt:success` (magenta) - The `PURE_PROMPT_SYMBOL` when the previous command has *succeded*.
 - `user` (242) - The username when on remote machine.
 - `user:root` (default) - The username when the user is root.
-- `nvm_version` (242) - The current active `nvm` version when not set to `system`.
+- `nvm_version` (242) - The current `nvm` version when not set to `system`.
 
 The following diagram shows where each color is applied on the prompt:
 
@@ -167,10 +168,7 @@ prompt pure
 
 ## Tips
 
-In the screenshot you see Pure running in [Hyper](https://hyper.is) with the [hyper-snazzy](https://github.com/sindresorhus/hyper-snazzy) theme and Menlo font.
-
-The [Tomorrow Night Eighties](https://github.com/chriskempson/tomorrow-theme) theme with the [Droid Sans Mono](https://www.fontsquirrel.com/fonts/droid-sans-mono) font (15pt) is also a [nice combination](https://github.com/sindresorhus/pure/blob/95ee3e7618c6e2162a1e3cdac2a88a20ac3beb27/screenshot.png).<br>
-*Just make sure you have anti-aliasing enabled in your terminal.*
+In the screenshot you see pure-nvm running in [iTerm2](https://iterm2.com) with the [dracula theme](https://draculatheme.com/) and Menlo font.
 
 To have commands colorized as seen in the screenshot, install [zsh-syntax-highlighting](https://github.com/zsh-users/zsh-syntax-highlighting).
 
