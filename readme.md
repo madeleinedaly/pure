@@ -99,9 +99,9 @@ The following diagram shows where each color is applied on the prompt:
 │          │       │        │
 ~/dev/pure master* ⇡ zaphod@heartofgold 42s
 v8.12.0 ❯            │                  │
-│    │               │                  └──── execution_time
-│    │               └──────────────────────── user
-│    └──────────────────────────────────────── prompt
+│       │            │                  └──── execution_time
+│       │            └──────────────────────── user
+│       └───────────────────────────────────── prompt
 └───────────────────────────────────────────── nvm_version
 ```
 
