@@ -34,35 +34,13 @@ That's it. Skip to [Getting started](#getting-started).
 
 ### Manually
 
-1. Either…
-  - Clone this repo
-  - add it as a submodule, or
-  - just download [`pure.zsh`](pure.zsh) and [`async.zsh`](async.zsh)
-
-2. Symlink `pure.zsh` to somewhere in [`$fpath`](https://www.refining-linux.org/archives/46-ZSH-Gem-12-Autoloading-functions.html) with the name `prompt_pure_setup`.
-
-3. Symlink `async.zsh` in `$fpath` with the name `async`.
-
-#### Example
-
-```console
-$ ln -s "$PWD/pure.zsh" /usr/local/share/zsh/site-functions/prompt_pure_setup
-$ ln -s "$PWD/async.zsh" /usr/local/share/zsh/site-functions/async
-```
-*Run `echo $fpath` to see possible locations.*
-
-For a user-specific installation (which would not require escalated privileges), simply add a directory to `$fpath` for that user:
+1. Clone this repo somewhere. Here we'll use `$HOME/.zsh/pure`.
+2. Add the path of the cloned repo to `$fpath` in `$HOME/.zshrc`.
 
 ```sh
-# .zshenv or .zshrc
-fpath=("$HOME/.zfunctions" $fpath)
-```
-
-Then install the theme there:
-
-```console
-$ ln -s "$PWD/pure.zsh" "$HOME/.zfunctions/prompt_pure_setup"
-$ ln -s "$PWD/async.zsh" "$HOME/.zfunctions/async"
+mkdir -p "$HOME/.zsh"
+git clone https://github.com/madeleinedaly/pure-nvm.git "$HOME/.zsh/pure"
+fpath+=("$HOME/.zsh/pure")
 ```
 
 
@@ -114,17 +92,17 @@ Colors can be changed by using [`zstyle`](http://zsh.sourceforge.net/Doc/Release
 The following diagram shows where each color is applied on the prompt:
 
 ```
-path
-|          git:branch
-|          |       git:arrow
-|          |       |        host
-|          |       |        |
-~/dev/pure master* ⇡ zaphod@heartofgold  42s
-venv ❯               |                   |
-|    |               |                   execution_time
-|    |               user
-|    prompt
-nvm_version
+┌───────────────────────────────────────────── path
+│          ┌────────────────────────────────── git:branch
+│          │       ┌────────────────────────── git:arrow
+│          │       │        ┌───────────────── host
+│          │       │        │
+~/dev/pure master* ⇡ zaphod@heartofgold 42s
+v8.12.0 ❯            │                  │
+│    │               │                  └──── execution_time
+│    │               └──────────────────────── user
+│    └──────────────────────────────────────── prompt
+└───────────────────────────────────────────── nvm_version
 ```
 
 ### RGB colors
@@ -223,7 +201,7 @@ zplugin light madeleinedaly/pure-nvm
 
 There are currently no FAQs.
 
-See [FAQ Archive](https://github.com/sindresorhus/pure/wiki/FAQ-Archive) for previous FAQs.
+See [FAQ Archive](https://github.com/madeleinedaly/pure-nvm/wiki/FAQ-Archive) for previous FAQs.
 
 
 ## Ports
@@ -245,10 +223,3 @@ See [FAQ Archive](https://github.com/sindresorhus/pure/wiki/FAQ-Archive) for pre
 	- [talal/mimir](https://github.com/talal/mimir) - Pure-inspired prompt in Go with Kubernetes and OpenStack cloud support. Not intended to have feature parity.
 - **PowerShell**
 	- [nickcox/pure-pwsh](https://github.com/nickcox/pure-pwsh/) - PowerShell/PS Core implementation of the Pure prompt.
-
-
-## Team
-
-[![Sindre Sorhus](https://github.com/sindresorhus.png?size=100)](http://sindresorhus.com) | [![Mathias Fredriksson](https://github.com/mafredri.png?size=100)](https://github.com/mafredri)
----|---
-[Sindre Sorhus](https://github.com/sindresorhus) | [Mathias Fredriksson](https://github.com/mafredri)
