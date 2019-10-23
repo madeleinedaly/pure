@@ -6,6 +6,7 @@ This is a fork of [sindresorhus/pure](https://github.com/sindresorhus/pure) that
 
 ![Screenshot](screenshot.png)
 
+The screenshot above shows how this prompt integrates with the [lukechilds/zsh-nvm](https://github.com/lukechilds/zsh-nvm) ZSH plugin installed and `NVM_AUTO_USE` set to `true`.
 
 ## Overview
 
