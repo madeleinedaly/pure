@@ -118,6 +118,7 @@ prompt_pure_preprompt_render() {
 
 	# Set color for Git branch/dirty status and change color if dirty checking has been delayed.
 	local git_color=$prompt_pure_colors[git:branch]
+	local git_dirty_color=$prompt_pure_colors[git:dirty]
 	[[ -n ${prompt_pure_git_last_dirty_check_timestamp+x} ]] && git_color=$prompt_pure_colors[git:branch:cached]
 
 	# Initialize the preprompt array.
@@ -129,7 +130,11 @@ prompt_pure_preprompt_render() {
 	# Add Git branch and dirty status info.
 	typeset -gA prompt_pure_vcs_info
 	if [[ -n $prompt_pure_vcs_info[branch] ]]; then
-		preprompt_parts+=("%F{$git_color}"'${prompt_pure_vcs_info[branch]}${prompt_pure_git_dirty}%f')
+		local branch="%F{$git_color}"'${prompt_pure_vcs_info[branch]}'
+		if [[ -n $prompt_pure_vcs_info[action] ]]; then
+			branch+="|%F{$prompt_pure_colors[git:action]}"'$prompt_pure_vcs_info[action]'"%F{$git_color}"
+		fi
+		preprompt_parts+=("$branch""%F{$git_dirty_color}"'${prompt_pure_git_dirty}%f')
 	fi
 	# Git pull/push arrows.
 	if [[ -n $prompt_pure_git_arrows ]]; then
@@ -239,11 +244,11 @@ prompt_pure_async_vcs_info() {
 	# to be used or configured as the user pleases.
 	zstyle ':vcs_info:*' enable git
 	zstyle ':vcs_info:*' use-simple true
-	# Only export two message variables from `vcs_info`.
-	zstyle ':vcs_info:*' max-exports 2
-	# Export branch (%b) and Git toplevel (%R).
+	# Only export three message variables from `vcs_info`.
+	zstyle ':vcs_info:*' max-exports 3
+	# Export branch (%b), Git toplevel (%R), and action (rebase/cherry-pick) (%a).
 	zstyle ':vcs_info:git*' formats '%b' '%R'
-	zstyle ':vcs_info:git*' actionformats '%b|%a' '%R'
+	zstyle ':vcs_info:git*' actionformats '%b' '%R' '%a'
 
 	vcs_info
 
@@ -251,6 +256,7 @@ prompt_pure_async_vcs_info() {
 	info[pwd]=$PWD
 	info[top]=$vcs_info_msg_1_
 	info[branch]=$vcs_info_msg_0_
+	info[action]=$vcs_info_msg_2_
 
 	print -r - ${(@kvq)info}
 }
@@ -437,6 +443,7 @@ prompt_pure_async_callback() {
 			# Always update branch and top-level.
 			prompt_pure_vcs_info[branch]=$info[branch]
 			prompt_pure_vcs_info[top]=$info[top]
+			prompt_pure_vcs_info[action]=$info[action]
 
 			do_render=1
 			;;
@@ -663,6 +670,8 @@ prompt_pure_setup() {
 		git:arrow            cyan
 		git:branch           242
 		git:branch:cached    red
+		git:action           242
+		git:dirty            218
 		host                 242
 		path                 blue
 		prompt:error         red
@@ -692,8 +701,8 @@ prompt_pure_setup() {
 	# Prompt turns red if the previous command didn't exit with 0.
 	PROMPT+='%(?.%F{$prompt_pure_colors[prompt:success]}.%F{$prompt_pure_colors[prompt:error]})${prompt_pure_state[prompt]}%f '
 
-	# Indicate continuation prompt by ... and use a darker color for it.
-	PROMPT2='%F{242}... %(1_.%_ .%_)%f%(?.%F{magenta}.%F{red})${prompt_pure_state[prompt]}%f '
+	# Indicate continuation prompt by … and use a darker color for it.
+	PROMPT2='%F{242}%_… %f%(?.%F{magenta}.%F{red})${prompt_pure_state[prompt]}%f '
 
 	# Store prompt expansion symbols for in-place expansion via (%). For
 	# some reason it does not work without storing them in a variable first.
