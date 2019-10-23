@@ -95,15 +95,15 @@ Colors can be changed by using [`zstyle`](http://zsh.sourceforge.net/Doc/Release
 The following diagram shows where each color is applied on the prompt:
 
 ```
-┌───────────────────────────────────────────── path
-│          ┌────────────────────────────────── git:branch
+┌───────────────────────────────────────────────────── path
+│          ┌────────────────────────────────────────── git:branch
 │          │      ┌─────────────────────────────────── git:action
 |          |      |       ┌─────────────────────────── git:dirty
 │          │      │       │ ┌───────────────────────── git:arrow
 │          │      │       │ │        ┌──────────────── host
 │          │      │       │ │        │
 ~/dev/pure master|rebase-i* ⇡ zaphod@heartofgold 42s
-v8.16.2 ❯                 │                      │
+v8.12.0 ❯                 │                      │
 │       │                 │                      └──── execution_time
 │       │                 └─────────────────────────── user
 │       └───────────────────────────────────────────── prompt
