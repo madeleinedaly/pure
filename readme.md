@@ -1,6 +1,6 @@
 # pure-nvm
 
-> Pretty, minimal and fast ZSH prompt
+> Pretty, minimal and fast zsh prompt with nvm integration
 
 This is a fork of [sindresorhus/pure](https://github.com/sindresorhus/pure) that supports nvm instead of virtualenv.
 
