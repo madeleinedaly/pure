@@ -1,7 +1,7 @@
 {
 	"name": "pure-prompt-nvm",
 	"version": "1.0.9",
-	"description": "Pretty, minimal and fast ZSH prompt",
+	"description": "Pretty, minimal and fast zsh prompt with nvm integration",
 	"license": "MIT",
 	"repository": "madeleinedaly/pure-nvm",
 	"author": {
