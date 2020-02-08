@@ -36,14 +36,16 @@ That's it. Skip to [Getting started](#getting-started).
 ### Manually
 
 1. Clone this repo somewhere. Here we'll use `$HOME/.zsh/pure`.
-2. Add the path of the cloned repo to `$fpath` in `$HOME/.zshrc`.
 
 ```sh
-mkdir -p "$HOME/.zsh"
 git clone https://github.com/madeleinedaly/pure-nvm.git "$HOME/.zsh/pure"
-fpath+=("$HOME/.zsh/pure")
 ```
 
+2. Add the path of the cloned repo to `$fpath` in `$HOME/.zshrc`.
+```sh
+# .zshrc
+fpath+=$HOME/.zsh/pure
+```
 
 ## Getting started
 
@@ -88,6 +90,7 @@ Colors can be changed by using [`zstyle`](http://zsh.sourceforge.net/Doc/Release
 - `path` (blue) - The current path, for example, `PWD`.
 - `prompt:error` (red) - The `PURE_PROMPT_SYMBOL` when the previous command has *failed*.
 - `prompt:success` (magenta) - The `PURE_PROMPT_SYMBOL` when the previous command has *succeded*.
+- `prompt:continuation` (242) - The color for showing the state of the parser in the continuation prompt (PS2). It's the pink part in [this screenshot](https://user-images.githubusercontent.com/147409/70068574-ebc74800-15f8-11ea-84c0-8b94a4b57ff4.png), it appears in the same spot as `virtualenv`. You could for example matching both colors so that Pure has a uniform look.
 - `user` (242) - The username when on remote machine.
 - `user:root` (default) - The username when the user is root.
 - `nvm_version` (242) - The current `nvm` version when not set to `system`.
@@ -107,7 +110,7 @@ v8.12.0 ❯                 │                      │
 │       │                 │                      └──── execution_time
 │       │                 └─────────────────────────── user
 │       └───────────────────────────────────────────── prompt
-└───────────────────────────────────────────────────── nvm_version
+└───────────────────────────────────────────────────── nvm_version (or prompt:continuation)
 ```
 
 ### RGB colors
@@ -164,6 +167,10 @@ To have commands colorized as seen in the screenshot, install [zsh-syntax-highli
 
 Symlink (or copy) `pure.zsh` to `~/.prezto/modules/prompt/functions/prompt_pure_setup` alongside Prezto's other
 prompts. Then `set zstyle ':prezto:module:prompt' theme 'pure'` in `~/.zpreztorc`.
+
+### [zim](https://github.com/Eriner/zim)
+
+Add `zmodule madeleinedaly/pure-nvm --source async.zsh --source pure.zsh` to your `.zimrc` and run `zimfw install`.
 
 ### [antigen](https://github.com/zsh-users/antigen)
 
